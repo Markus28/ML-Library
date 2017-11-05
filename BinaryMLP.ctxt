@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=BinaryMLP
+comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ BinaryClassifier.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
+comment1.params=layers\ cutoff
+comment1.target=BinaryMLP(int[],\ double)
+comment2.params=x\ y\ parameters
+comment2.target=void\ lernen(double[][],\ boolean[],\ java.util.List)
+comment3.params=x
+comment3.target=boolean\ vorhersage(double[])
+comment4.params=x
+comment4.target=void\ setThreshold(double)
+comment5.params=
+comment5.target=double[]\ getThresholdBounds()
+comment6.params=x
+comment6.target=boolean\ heaviside(double)
+numComments=7
