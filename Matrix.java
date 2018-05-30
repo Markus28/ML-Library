@@ -186,6 +186,7 @@ public class Matrix implements java.io.Serializable
     {
         x.skalarMulInPlace(-1);
         matrixAddInPlace(x);
+        x.skalarMulInPlace(-1);
     }
     
     public void skalarMulInPlace(double x)
