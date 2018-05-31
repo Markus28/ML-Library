@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Tragen Sie hier eine Beschreibung des Interface MultiClassClassifier ein.
@@ -7,8 +8,8 @@ import java.util.List;
  * @version (eine Versionsnummer oder ein Datum)
  */
 
-public interface MultiClassClassifier
+public interface MultiClassClassifier<T>
 {
-    void lernen(double[][] x, List y, List parameters) throws Exception;
-    Object vorhersage(double[] x) throws Exception;
+    void lernen(double[][] x, ArrayList<T> y) throws Exception;
+    T vorhersage(double[] x) throws Exception;
 }

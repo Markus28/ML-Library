@@ -7,7 +7,7 @@ public class ProgressBar
     private int maxTickCount;
     private int ticks;
     private int skip;
-    private int fields = 36;
+    private int fields = 37;
     
     public ProgressBar(int ticks, int skip)
     {
@@ -46,7 +46,7 @@ public class ProgressBar
         }
         
         s += "|";
-        s += ((double)((int) (ratio*10000)))/100;
+        s +=  String.format("%.2f", ratio*100);
         s += "%";
         
         if(printCount != maxPrintCount)

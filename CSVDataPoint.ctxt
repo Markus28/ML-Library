@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=CSVDataPoint
-comment0.text=\r\n\ Tragen\ Sie\ hier\ eine\ Beschreibung\ des\ Interface\ CSVDatapoint\ ein.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
-comment1.params=line
-comment1.target=java.lang.Object\ fromLine(java.lang.String[])
-comment2.params=
-comment2.target=java.lang.String\ toLine()
-numComments=3

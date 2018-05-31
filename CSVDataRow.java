@@ -6,8 +6,7 @@
  * @version (eine Versionsnummer oder ein Datum)
  */
 
-public interface CSVDataPoint
+public interface CSVDataRow
 {
-    Object fromLine(String[] line);
     String toLine();
 }

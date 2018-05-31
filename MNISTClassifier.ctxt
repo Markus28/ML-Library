@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=MNISTClassifier
-comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ MNISTClassifier.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
+comment0.text=\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ MNISTClassifier.\n\ \n\ @author\ (Ihr\ Name)\ \n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\n
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
 numComments=2

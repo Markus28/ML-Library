@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=ConfusionMatrix
-comment0.text=\r\n\ ConfusionMatrix.\r\n\ \r\n\ @Markus\ K\r\n\ @1.0\r\n
+comment0.text=\n\ ConfusionMatrix.\n\ \n\ @Markus\ K\n\ @1.0\n
 comment1.params=TP\ FP\ TN\ FN
 comment1.target=ConfusionMatrix(int,\ int,\ int,\ int)
 comment10.params=

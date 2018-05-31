@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=OneHotCoder
-comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ OneHotCoder.\r\n\ \r\n\ @Markus\ K\r\n\ @1.0\r\n
+comment0.text=\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ OneHotCoder.\n\ \n\ @Markus\ K\n\ @1.0\n
 comment1.params=classes
-comment1.target=OneHotCoder(java.util.List)
+comment1.target=OneHotCoder(java.util.ArrayList)
 comment2.params=label
 comment2.target=int[]\ encode(java.lang.Object)
 comment3.params=encoded

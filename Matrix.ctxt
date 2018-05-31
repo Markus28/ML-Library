@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=Matrix
-comment0.text=\r\n\ Matrix\r\n\ \r\n\ @Markus\ K\ \r\n\ @1.0\r\n
+comment0.text=\n\ Matrix\n\ \n\ @Markus\ K\ \n\ @1.0\n
 comment1.params=matrix
 comment1.target=Matrix(double[][])
-comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ Matrix\r\n
+comment1.text=\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ Matrix\n
 comment10.params=m\ n
 comment10.target=double\ eintrag(int,\ int)
 comment11.params=

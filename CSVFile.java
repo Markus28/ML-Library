@@ -14,20 +14,19 @@ import java.io.PrintWriter;
  * @author (Ihr Name) 
  * @version (eine Versionsnummer oder ein Datum)
  */
-public class CSVFile
+public abstract class CSVFile
 {
-    Class dp;
-    String path;
+    private String path;
+    private ArrayList<CSVDataRow> fields;
     
-    public CSVFile(String path, Class<? extends CSVDataPoint> dp)
+    public CSVFile(String path)
     {
         this.path = path;
-        this.dp = dp;
     }
 
-    public List load(int skip) throws Exception
+    public void load(int skip) throws Exception
     {
-        List fields = new ArrayList<Object>();
+        fields = new ArrayList<>();
         int lineCount = 0;
         
         try(BufferedReader br = new BufferedReader(new FileReader(path))){
@@ -37,25 +36,29 @@ public class CSVFile
                 
                 if(lineCount > skip)
                 {
-                    CSVDataPoint a = (CSVDataPoint) dp.newInstance();
-                    fields.add(a.fromLine(line.split("\\,")));
+                    fields.add(getRow(line.split("\\,")));
                 }
             }
         }
-        
-        return fields;
     }
     
-    public void dump(List<CSVDataPoint> lines) throws Exception
+    public void dump() throws Exception
     {
         String result = "";
         PrintWriter writer = new PrintWriter(path, "UTF-8");
         
-        for(int n = 0; n < lines.size(); n++)
+        for(int n = 0; n < fields.size(); n++)
         {
-            writer.println(lines.get(n).toLine());
+            writer.println(fields.get(n).toLine());
         }
         
         writer.close();
     }
+    
+    public ArrayList<CSVDataRow> getContent()
+    {
+        return fields;
+    }
+    
+    protected abstract CSVDataRow getRow(String[] line);
 }

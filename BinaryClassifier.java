@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface BinaryClassifier
 {
-    void lernen(double[][] x, boolean[] y, List parameters) throws Exception;
+    void lernen(double[][] x, boolean[] y) throws Exception;
     boolean vorhersage(double[] x) throws Exception;
-    void setThreshold(double x) throws Exception;
-    double[] getThresholdBounds();
 }

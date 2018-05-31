@@ -23,7 +23,7 @@ public class BinaryCrossValidator
     }
 
 
-    public ConfusionMatrix[] validate(int folds, double[][] x, boolean[] y, List parameters) throws Exception
+    public ConfusionMatrix[] validate(int folds, double[][] x, boolean[] y) throws Exception
     {
         double[][] in = new double[x.length][];
         boolean[] out = new boolean[y.length];
@@ -36,7 +36,7 @@ public class BinaryCrossValidator
         int prevBeginning = 0;
         ConfusionMatrix[] matrices = new ConfusionMatrix[folds];
         
-        List<Integer> indexArray = new ArrayList();
+        ArrayList<Integer> indexArray = new ArrayList<>();
             
         for(int index = 0; index < x.length; index++)
         {
@@ -72,7 +72,7 @@ public class BinaryCrossValidator
             batchTrainIn = Utils.addAll(Arrays.copyOfRange(in, prevBeginning ,n*length), Arrays.copyOfRange(in, (n+1)*length, in.length));
             batchTrainOut = Utils.addAll(Arrays.copyOfRange(out, prevBeginning ,n*length), Arrays.copyOfRange(out, (n+1)*length, out.length));
             
-            model.lernen(batchTrainIn, batchTrainOut, parameters);
+            model.lernen(batchTrainIn, batchTrainOut);
             
             for(int i = 0; i < batchTestIn.length; i++)
             {

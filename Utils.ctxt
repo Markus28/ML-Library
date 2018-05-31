@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Utils
-comment0.text=\r\n\ Tools\r\n\ \r\n\ @Markus\ K\r\n\ @1.0\r\n
+comment0.text=\n\ Tools\n\ \n\ @Markus\ K\n\ @1.0\n
 comment1.params=a\ b
 comment1.target=boolean[]\ addAll(boolean[],\ boolean[])
 comment10.params=distribution

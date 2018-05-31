@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=KMeans
-comment0.text=\r\n\ K-Means\ Clustering\r\n\ \r\n\ @Markus\ K\r\n\ @1.0\r\n
+comment0.text=\n\ K-Means\ Clustering\n\ \n\ @Markus\ K\n\ @1.0\n
 comment1.params=k
 comment1.target=KMeans(int)
 comment2.params=

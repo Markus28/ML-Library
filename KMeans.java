@@ -30,7 +30,7 @@ public class KMeans
     
     protected double[][] seed(double[][] x) throws Exception
     {
-        List used = new ArrayList<Integer>();
+        ArrayList<Integer> used = new ArrayList<>();
         double[][] c = new double[k][];
         
         for(int n = 0; n < k; n++)
@@ -63,7 +63,6 @@ public class KMeans
             dim = x[0].length;
         }
         
-        //System.out.println(Arrays.deepToString(centroids));
         while(! Arrays.equals(oldCentroids, centroids))
         {
             oldCentroids = centroids;

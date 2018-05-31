@@ -17,6 +17,9 @@ public class Perzeptron implements java.io.Serializable
     private double[][] bias;
     private double min = -1;
     private double max = 1;
+    private int epochen;
+    private int batchSize;
+    private double eta;
     private OneDoubleArgOperator lambdaActivator = (x) -> 1.0/(1.0 + Math.exp(-x));
 
     /**
@@ -92,7 +95,14 @@ public class Perzeptron implements java.io.Serializable
         return akt;
     }
     
-    public void lernen(double[][] x, double[][] y, int epochen, int batchSize, double eta) throws Exception
+    public void setParameters(int epochen, int batchSize, double eta)
+    {
+        this.epochen = epochen;
+        this.batchSize = batchSize;
+        this.eta = eta;
+    }
+    
+    public void lernen(double[][] x, double[][] y) throws Exception
     {
         if(x.length != y.length)
         {
@@ -152,7 +162,7 @@ public class Perzeptron implements java.io.Serializable
         }
     }
     
-    public void updateBatch(double[][] batchEin, double[][] batchAus, double eta) throws Exception
+    private void updateBatch(double[][] batchEin, double[][] batchAus, double eta) throws Exception
     {
         Matrix[] nablaGewichte = new Matrix[gewichte.length];
         double[][] nablaBias = new double[bias.length][];
@@ -190,7 +200,7 @@ public class Perzeptron implements java.io.Serializable
         }
     }
     
-    public BackpropNabla backprop(double[] ein, double[] aus) throws Exception
+    private BackpropNabla backprop(double[] ein, double[] aus) throws Exception
     {
         Matrix[] nablaGewichte = new Matrix[gewichte.length];
         double[][] nablaBias = new double[bias.length][];

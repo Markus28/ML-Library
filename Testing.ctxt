@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Testing
-comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Testing.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
+comment0.text=\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Testing.\n\ \n\ @author\ (Ihr\ Name)\ \n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\n
 comment1.params=
 comment1.target=void\ test()
 comment2.params=

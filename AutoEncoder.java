@@ -6,13 +6,13 @@ import java.util.List;
  * @author (Ihr Name) 
  * @version (eine Versionsnummer oder ein Datum)
  */
-public class Autoencoder extends Perzeptron
+public class AutoEncoder extends Perzeptron
 {
     int halfLayerCount;
     
-    public Autoencoder(int[] halfLayers)
+    public AutoEncoder(int[] halfLayers)
     {
-        super(Autoencoder.halfToFull(halfLayers));
+        super(AutoEncoder.halfToFull(halfLayers));
         halfLayerCount = halfLayers.length;
     }
     
@@ -35,9 +35,9 @@ public class Autoencoder extends Perzeptron
         return layers;
     }
 
-    public void lernen(double[][] x, List parameters) throws Exception
+    public void lernen(double[][] x) throws Exception
     {
-        super.lernen(x, x, (int) parameters.get(0), (int) parameters.get(1), (double) parameters.get(2));
+        super.lernen(x, x);
     }
     
     public double[] encode(double[] x) throws Exception

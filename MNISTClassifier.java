@@ -14,7 +14,7 @@ import java.io.ObjectInputStream;
  */
 public class MNISTClassifier
 {
-    static MultiClassMLP model;
+    private static MultiClassMLP<Integer> model;
     
     public static void main(String[] args) throws Exception, IOException
     {
@@ -24,41 +24,47 @@ public class MNISTClassifier
             throw new Exception("In- or Output layer dimensions wrong...");
         }
         
-        //model = new MultiClassMLP(shape);
-        FileInputStream fileIn = new FileInputStream("model.ser");
-        ObjectInputStream in = new ObjectInputStream(fileIn);
-        model = (MultiClassMLP) in.readObject();
+        try{
+            FileInputStream fileIn = new FileInputStream("model.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            model = (MultiClassMLP) in.readObject();
+        }
+        
+        catch(Exception e){
+            System.err.println("Couldn't read .ser file, creating new model...");
+            model = new MultiClassMLP<>(shape);
+        }
+        
         System.out.print("Loading data");
         LoadingDots runnable = new LoadingDots(0.5);
         Thread thread = new Thread(runnable);
         thread.start();
-        CSVFile f = new CSVFile("train.csv", MNISTDataPoint.class);
-        List<MNISTDataPoint> fields = f.load(0);
+        MNISTFile f = new MNISTFile("train.csv");
+        f.load(0);
+        List<CSVDataRow> fields = f.getContent();
         double[][] x = new double[fields.size()][];
-        List y = new ArrayList<Integer>();
-        List params = new ArrayList();
-        params.add(15);
-        params.add(90);
-        params.add(0.03);
+        ArrayList<Integer> y = new ArrayList<>();
         
         for(int n = 0; n < fields.size(); n++)
         {
-            x[n] = fields.get(n).getFeatures();
-            y.add(fields.get(n).getLabel());
+            x[n] = ((MNISTDataRow)fields.get(n)).getFeatures();
+            y.add(((MNISTDataRow)fields.get(n)).getLabel());
         }
         
         runnable.terminate();
         thread.join();
-        
+
         System.out.println("Training:\n");
-        model.lernen(x, y, params);
+        model.setParameters(15,90,0.03);
+        model.lernen(x, y);
         
-        f = new CSVFile("test.csv", MNISTDataPoint.class);
-        fields = f.load(0);
+        f = new MNISTFile("test.csv");
+        f.load(0);
+        fields = f.getContent();
         int correct = 0;
         for(int n = 0; n < fields.size(); n++)
         {
-            if((int) model.vorhersage(fields.get(n).getFeatures()) == fields.get(n).getLabel())
+            if((int) model.vorhersage(((MNISTDataRow)fields.get(n)).getFeatures()) == ((MNISTDataRow)fields.get(n)).getLabel())
             {
                 correct ++;
             }

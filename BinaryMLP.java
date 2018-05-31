@@ -27,8 +27,9 @@ public class BinaryMLP extends Perzeptron implements BinaryClassifier
         this.cutoff = cutoff;
     }
     
-
-    public void lernen(double[][] x,  boolean[] y, List parameters) throws Exception
+    
+    @Override
+    public void lernen(double[][] x,  boolean[] y) throws Exception
     {
         double[][] mlpY = new double[y.length][];
         
@@ -38,15 +39,14 @@ public class BinaryMLP extends Perzeptron implements BinaryClassifier
             mlpY[n][0] = y[n]? 1 : 0;
         }
         
-        super.lernen(x, mlpY, (int) parameters.get(0), (int) parameters.get(1), (double) parameters.get(2));
+        super.lernen(x, mlpY);
     }
     
-    
+    @Override
     public boolean vorhersage(double[] x) throws Exception
     {
         return heaviside(super.vorhersageWahrscheinlichkeit(x)[0]);
     }
-    
     
     public void setThreshold(double x) throws Exception
     {

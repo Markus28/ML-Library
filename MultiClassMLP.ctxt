@@ -1,10 +1,10 @@
 #BlueJ class context
 comment0.target=MultiClassMLP
-comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ MultiClassMLP.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
+comment0.text=\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ MultiClassMLP.\n\ \n\ @author\ (Ihr\ Name)\ \n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\n
 comment1.params=layers
 comment1.target=MultiClassMLP(int[])
-comment2.params=x\ y\ parameters
-comment2.target=void\ lernen(double[][],\ java.util.List,\ java.util.List)
+comment2.params=x\ y
+comment2.target=void\ lernen(double[][],\ java.util.ArrayList)
 comment3.params=x
 comment3.target=java.lang.Object\ vorhersage(double[])
 numComments=4

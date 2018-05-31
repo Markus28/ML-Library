@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=OneDoubleArgOperator
-comment0.text=\r\n\ Tragen\ Sie\ hier\ eine\ Beschreibung\ des\ Interface\ OneDoubleArgOperator\ ein.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
+comment0.text=\n\ Tragen\ Sie\ hier\ eine\ Beschreibung\ des\ Interface\ OneDoubleArgOperator\ ein.\n\ \n\ @author\ (Ihr\ Name)\ \n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\n
 comment1.params=x
 comment1.target=double\ operate(double)
 numComments=2
