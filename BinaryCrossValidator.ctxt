@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=BinaryCrossValidator
+comment0.text=\r\n\ K-fache\ Kreuzvalidierung\r\n\ \r\n\ @Markus\ K\ \r\n\ @1.0\r\n
+comment1.params=model
+comment1.target=BinaryCrossValidator(BinaryClassifier)
+comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ CrossValidator\r\n
+comment2.params=folds\ x\ y\ parameters
+comment2.target=ConfusionMatrix[]\ validate(int,\ double[][],\ boolean[],\ java.util.List)
+numComments=3

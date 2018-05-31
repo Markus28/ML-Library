@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ProgressBar
+comment1.params=ticks\ skip
+comment1.target=ProgressBar(int,\ int)
+comment2.params=
+comment2.target=void\ tick()
+comment3.params=
+comment3.target=void\ print()
+numComments=4
