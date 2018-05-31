@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=KPlus
-comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ KPlus.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
-comment1.params=k
-comment1.target=KPlus(int)
-comment2.params=x
-comment2.target=double[][]\ seed(double[][])
-numComments=3
