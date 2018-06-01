@@ -1,15 +1,8 @@
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Random;
 
-/**
- * K-Means Clustering
- * 
- * @Markus K
- * @1.0
- */
+
 public class KMeans
 {
     private boolean seeded = false;

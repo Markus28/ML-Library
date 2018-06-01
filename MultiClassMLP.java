@@ -1,5 +1,3 @@
-import java.util.List;
-import java.util.Arrays;
 import java.util.ArrayList;
 
 /**
@@ -8,9 +6,9 @@ import java.util.ArrayList;
  * @author (Ihr Name) 
  * @version (eine Versionsnummer oder ein Datum)
  */
-public class MultiClassMLP<T> extends Perzeptron implements MultiClassClassifier<T>, java.io.Serializable
+public class MultiClassMLP<T> extends Perceptron implements MultiClassClassifier<T>, java.io.Serializable
 {
-    OneHotCoder<T> coder;
+    private OneHotCoder<T> coder;
     
     public MultiClassMLP(int[] layers)
     {
@@ -18,11 +16,11 @@ public class MultiClassMLP<T> extends Perzeptron implements MultiClassClassifier
     }
     
     @Override
-    public void lernen(double[][] x, ArrayList<T> y) throws Exception
+    public void train(double[][] x, ArrayList<T> y) throws Exception
     {
         if(coder == null)
         {
-            coder = new OneHotCoder(y);
+            coder = new OneHotCoder<>(y);
         }
         
         if(coder.encode(y.get(0)).length != getLayers()[getLayers().length - 1])
@@ -37,11 +35,12 @@ public class MultiClassMLP<T> extends Perzeptron implements MultiClassClassifier
             trainOut[n] = coder.encode(y.get(n));
         }
         
-        super.lernen(x, Utils.intToDoubleArr(trainOut));
+        super.train(x, Utils.intToDoubleArr(trainOut));
     } 
-    
-    public T vorhersage(double[] x) throws Exception
+
+    @Override
+    public T predict(double[] x) throws Exception
     {
-        return coder.decode(Utils.maxProb(super.vorhersageWahrscheinlichkeit(x)));
+        return coder.decode(Utils.maxProb(super.predictProbability(x)));
     }
 }

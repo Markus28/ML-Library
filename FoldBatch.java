@@ -1,11 +1,11 @@
-public class Fold<T>
+public class FoldBatch<T>
 {
     private double[][] xTrain;
     private double[][] xTest;
     private T[] yTrain;
     private T[] yTest;
 
-    public Fold(double[][] xTrain, double[][] xTest, T[] yTrain, T[] yTest)
+    public FoldBatch(double[][] xTrain, double[][] xTest, T[] yTrain, T[] yTest)
     {
         this.xTrain = xTrain;
         this.xTest = xTest;

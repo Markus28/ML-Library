@@ -1,19 +1,9 @@
-import java.util.List;
 import java.util.ArrayList;
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.io.FileReader;
 import java.io.PrintWriter;
 
 
-/**
- * Beschreiben Sie hier die Klasse CSVFile.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
 public abstract class CSVFile
 {
     private String path;

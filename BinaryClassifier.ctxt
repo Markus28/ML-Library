@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=BinaryClassifier
-comment0.text=\n\ Interface\ BinaryClassifier\n\ \n\ @Markus\ K\n\ @1.0\n
-comment1.params=x\ y
-comment1.target=void\ lernen(double[][],\ boolean[])
-comment2.params=x
-comment2.target=boolean\ vorhersage(double[])
-numComments=3

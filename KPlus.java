@@ -1,11 +1,6 @@
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Beschreiben Sie hier die Klasse KPlus.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
+
 public class KPlus extends KMeans
 {
     public KPlus(int k)

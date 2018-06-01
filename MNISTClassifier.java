@@ -6,12 +6,7 @@ import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
-/**
- * Beschreiben Sie hier die Klasse MNISTClassifier.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
+
 public class MNISTClassifier
 {
     private static MultiClassMLP<Integer> model;
@@ -39,7 +34,7 @@ public class MNISTClassifier
         LoadingDots runnable = new LoadingDots(0.5);
         Thread thread = new Thread(runnable);
         thread.start();
-        MNISTFile f = new MNISTFile("train.csv");
+        MNISTFile f = new MNISTFile("out/Data/train.csv");
         f.load(0);
         List<CSVDataRow> fields = f.getContent();
         double[][] x = new double[fields.size()][];
@@ -56,15 +51,15 @@ public class MNISTClassifier
 
         System.out.println("Training:\n");
         model.setParameters(15,90,0.03);
-        model.lernen(x, y);
+        model.train(x, y);
         
-        f = new MNISTFile("test.csv");
+        f = new MNISTFile("out/Data/test.csv");
         f.load(0);
         fields = f.getContent();
         int correct = 0;
-        for(int n = 0; n < fields.size(); n++)
+        for(CSVDataRow field: fields)
         {
-            if((int) model.vorhersage(((MNISTDataRow)fields.get(n)).getFeatures()) == ((MNISTDataRow)fields.get(n)).getLabel())
+            if(model.predict(((MNISTDataRow) field).getFeatures()) == ((MNISTDataRow) field).getLabel())
             {
                 correct ++;
             }

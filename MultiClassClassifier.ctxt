@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=MultiClassClassifier
-comment0.text=\n\ Tragen\ Sie\ hier\ eine\ Beschreibung\ des\ Interface\ MultiClassClassifier\ ein.\n\ \n\ @author\ (Ihr\ Name)\ \n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\n
-comment1.params=x\ y
-comment1.target=void\ lernen(double[][],\ java.util.ArrayList)
-comment2.params=x
-comment2.target=java.lang.Object\ vorhersage(double[])
-numComments=3

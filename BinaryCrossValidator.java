@@ -1,22 +1,14 @@
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
 
-/**
- * K-fache Kreuzvalidierung
- * 
- * @Markus K 
- * @1.0
- */
+
+
 public class BinaryCrossValidator
 {
     private BinaryClassifier model;
 
-    /**
-     * Konstruktor für Objekte der Klasse CrossValidator
-     */
+
     public BinaryCrossValidator(BinaryClassifier model)
     {
         this.model = model;
@@ -28,7 +20,7 @@ public class BinaryCrossValidator
         double[][] in = new double[x.length][];
         boolean[] out = new boolean[y.length];
         int length = (int)((double)x.length/(double)folds);
-        int end = 0;
+        int end;
         double[][] batchTestIn;
         boolean[] batchTestOut;
         double[][] batchTrainIn;
@@ -72,11 +64,11 @@ public class BinaryCrossValidator
             batchTrainIn = Utils.addAll(Arrays.copyOfRange(in, prevBeginning ,n*length), Arrays.copyOfRange(in, (n+1)*length, in.length));
             batchTrainOut = Utils.addAll(Arrays.copyOfRange(out, prevBeginning ,n*length), Arrays.copyOfRange(out, (n+1)*length, out.length));
             
-            model.lernen(batchTrainIn, batchTrainOut);
+            model.train(batchTrainIn, batchTrainOut);
             
             for(int i = 0; i < batchTestIn.length; i++)
             {
-                boolean res = model.vorhersage(batchTestIn[i]);
+                boolean res = model.predict(batchTestIn[i]);
                 
                 if(!res && !batchTestOut[i])
                 {

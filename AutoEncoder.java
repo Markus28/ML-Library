@@ -1,14 +1,6 @@
-import java.util.List;
-
-/**
- * Beschreiben Sie hier die Klasse Autoencoder.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
-public class AutoEncoder extends Perzeptron
+public class AutoEncoder extends Perceptron
 {
-    int halfLayerCount;
+    private int halfLayerCount;
     
     public AutoEncoder(int[] halfLayers)
     {
@@ -35,14 +27,14 @@ public class AutoEncoder extends Perzeptron
         return layers;
     }
 
-    public void lernen(double[][] x) throws Exception
+    public void train(double[][] x) throws Exception
     {
-        super.lernen(x, x);
+        super.train(x, x);                 //This is correct, in an AutoEncoder the output should be equal to the input
     }
     
     public double[] encode(double[] x) throws Exception
     {
-     return aktivierungen(x)[halfLayerCount - 1];
+        return activations(x)[halfLayerCount - 1];
     }
     
     public double[] decode(double[] x) throws Exception

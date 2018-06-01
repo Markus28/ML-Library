@@ -1,18 +1,16 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.util.concurrent.Callable;
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Tools
- * 
- * @Markus K
- * @1.0
- */
 public class Utils
 {
     private static OneDoubleArgOperator negate = (x) -> -1*x;
-    
+
+    public static <T> T[] addAll(T[] first, T[] second) {
+        T[] result = Arrays.copyOf(first, first.length + second.length);
+        System.arraycopy(second, 0, result, first.length, second.length);
+        return result;
+    }
+
     public static boolean[] addAll(boolean[] a, boolean[] b)
     {
         boolean[] result = new boolean[a.length + b.length];

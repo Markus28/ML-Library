@@ -10,6 +10,6 @@ import java.util.ArrayList;
 
 public interface MultiClassClassifier<T>
 {
-    void lernen(double[][] x, ArrayList<T> y) throws Exception;
-    T vorhersage(double[] x) throws Exception;
+    void train(double[][] x, ArrayList<T> y) throws Exception;
+    T predict(double[] x) throws Exception;
 }

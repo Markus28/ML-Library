@@ -1,12 +1,10 @@
-import java.util.List;
-
 /**
  * Beschreiben Sie hier die Klasse BinaryClassifier.
  * 
  * @author (Ihr Name) 
  * @version (eine Versionsnummer oder ein Datum)
  */
-public class BinaryMLP extends Perzeptron implements BinaryClassifier
+public class BinaryMLP extends Perceptron implements BinaryClassifier
 {
     private double cutoff;
     
@@ -29,7 +27,7 @@ public class BinaryMLP extends Perzeptron implements BinaryClassifier
     
     
     @Override
-    public void lernen(double[][] x,  boolean[] y) throws Exception
+    public void train(double[][] x, boolean[] y) throws Exception
     {
         double[][] mlpY = new double[y.length][];
         
@@ -39,13 +37,13 @@ public class BinaryMLP extends Perzeptron implements BinaryClassifier
             mlpY[n][0] = y[n]? 1 : 0;
         }
         
-        super.lernen(x, mlpY);
+        super.train(x, mlpY);
     }
     
     @Override
-    public boolean vorhersage(double[] x) throws Exception
+    public boolean predict(double[] x) throws Exception
     {
-        return heaviside(super.vorhersageWahrscheinlichkeit(x)[0]);
+        return heaviside(super.predictProbability(x)[0]);
     }
     
     public void setThreshold(double x) throws Exception
@@ -67,11 +65,6 @@ public class BinaryMLP extends Perzeptron implements BinaryClassifier
 
     private boolean heaviside(double x)
     {
-        if(x >= cutoff)
-        {
-            return true;
-        }
-        
-        return false;
+        return x >= cutoff;
     }
 }

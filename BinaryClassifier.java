@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface BinaryClassifier
 {
-    void lernen(double[][] x, boolean[] y) throws Exception;
-    boolean vorhersage(double[] x) throws Exception;
+    void train(double[][] x, boolean[] y) throws Exception;
+    boolean predict(double[] x) throws Exception;
 }

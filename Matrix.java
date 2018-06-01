@@ -12,19 +12,19 @@ public class Matrix implements java.io.Serializable
 {
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     private double[][] matrix;
-    int zeilen;
-    int spalten;
+    int rows;
+    int columns;
 
     /**
      * Konstruktor für Objekte der Klasse Matrix
      */
     public Matrix(double[][] matrix) throws Exception
     {
-        zeilen = matrix.length;
-        spalten = matrix[0].length;
+        rows = matrix.length;
+        columns = matrix[0].length;
         for(int i = 1; i < matrix.length; i++)
         {
-            if(matrix[i].length != spalten)
+            if(matrix[i].length != columns)
             {
                 throw new Exception("Dimensionen inkonsistent...");
             }
@@ -34,8 +34,8 @@ public class Matrix implements java.io.Serializable
     
     public Matrix(int m, int n)
     {
-        zeilen = m;
-        spalten = n;
+        rows = m;
+        columns = n;
         matrix = new double[m][n];
     }
     
@@ -60,7 +60,7 @@ public class Matrix implements java.io.Serializable
     
     public static Matrix arrayToColumn(double[] arr) throws Exception
     {
-        return Matrix.arrayToRow(arr).transponiert();
+        return Matrix.arrayToRow(arr).transpose();
     }
     
     public static Matrix zufall(int m, int n, double min, double max)
@@ -109,13 +109,13 @@ public class Matrix implements java.io.Serializable
         return matrix[m][n];
     }
     
-    public Matrix transponiert()
+    public Matrix transpose()
     {
-        Matrix returnMatrix = new Matrix(spalten, zeilen);
+        Matrix returnMatrix = new Matrix(columns, rows);
         
-        for(int k = 0; k < zeilen; k++)
+        for(int k = 0; k < rows; k++)
         {
-            for(int i = 0; i < spalten; i++)
+            for(int i = 0; i < columns; i++)
             {
                 returnMatrix.setzeWert(i, k, matrix[k][i]);
             }
@@ -126,11 +126,11 @@ public class Matrix implements java.io.Serializable
     
     public static Matrix matMul(Matrix a, Matrix b) throws Exception
     {
-        Matrix result = new Matrix(a.dimensionen()[0], b.dimensionen()[1]);
-        double[] vektor = new double[b.dimensionen()[0]];
-        for(int n = 0; n < b.dimensionen()[1]; n++)
+        Matrix result = new Matrix(a.getDimensions()[0], b.getDimensions()[1]);
+        double[] vektor = new double[b.getDimensions()[0]];
+        for(int n = 0; n < b.getDimensions()[1]; n++)
         {
-            for(int k = 0; k < b.dimensionen()[0]; k++)
+            for(int k = 0; k < b.getDimensions()[0]; k++)
             {
                 vektor[k] = b.wert(k, n);
             }
@@ -168,14 +168,14 @@ public class Matrix implements java.io.Serializable
     
     public void matrixAddInPlace(Matrix x) throws Exception
     {
-        if(x.dimensionen()[0] != zeilen || x.dimensionen()[1] != spalten)
+        if(x.getDimensions()[0] != rows || x.getDimensions()[1] != columns)
         {
             throw new Exception("Dimensionen inkonsistent...");
         }
         
-        for(int n = 0; n < zeilen; n++)
+        for(int n = 0; n < rows; n++)
         {
-            for(int k = 0; k<spalten; k++)
+            for(int k = 0; k< columns; k++)
             {
                 setzeWert(n, k, this.wert(n, k) + x.wert(n, k));
             }
@@ -191,9 +191,9 @@ public class Matrix implements java.io.Serializable
     
     public void skalarMulInPlace(double x)
     {
-        for(int n = 0; n < zeilen; n++)
+        for(int n = 0; n < rows; n++)
         {
-            for(int k = 0; k<spalten; k++)
+            for(int k = 0; k< columns; k++)
             {
                 setzeWert(n, k, this.wert(n, k)*x);
             }
@@ -213,9 +213,9 @@ public class Matrix implements java.io.Serializable
     }
     
     
-    public int[] dimensionen()
+    public int[] getDimensions()
     {
-        int[] result = {zeilen, spalten};
+        int[] result = {rows, columns};
         return result;
     }
     
@@ -223,7 +223,7 @@ public class Matrix implements java.io.Serializable
     {
         String a = "";
         
-        for(int n = 0; n < zeilen; n++)
+        for(int n = 0; n < rows; n++)
         {
             a += Arrays.toString(matrix[n]);
             a += "\n";
