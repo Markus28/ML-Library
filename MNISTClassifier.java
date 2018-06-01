@@ -36,7 +36,7 @@ public class MNISTClassifier
         thread.start();
         MNISTFile f = new MNISTFile("out/Data/train.csv");
         f.load(0);
-        List<CSVDataRow> fields = f.getContent();
+        ArrayList<CSVDataRow> fields = f.getContent();
         double[][] x = new double[fields.size()][];
         ArrayList<Integer> y = new ArrayList<>();
         
