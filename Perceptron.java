@@ -36,18 +36,18 @@ public class Perceptron implements java.io.Serializable
         }
     }
     
-    private double aktivierungsFkt(double x)
+    private double activationFunction(double x)
     {
         return 1.0/(1.0 + Math.exp(-x));
     }
     
-    private double aktivierungsDeriv(double x)
+    private double activationDerivative(double x)
     {
         return x*(1.0 - x);
     }
     
     //n ist schicht, aus der die Aktivierungen kommen -> Bei 0 wird die hidden layer nach input aktiviert
-    double[] aktiviereVektor(double[] gewichtSummen, int schicht) throws Exception
+    double[] activivateVector(double[] gewichtSummen, int schicht) throws Exception
     {
         if(gewichtSummen.length != bias[schicht].length)
         {
@@ -58,7 +58,7 @@ public class Perceptron implements java.io.Serializable
         
         for(int n = 0; n < gewichtSummen.length; n++)
         {
-            returnVektor[n] = aktivierungsFkt(gewichtSummen[n] + bias[schicht][n]);
+            returnVektor[n] = activationFunction(gewichtSummen[n] + bias[schicht][n]);
         }
         
         return returnVektor;
@@ -69,7 +69,7 @@ public class Perceptron implements java.io.Serializable
     {
         for(int n = 0; n < weights.length; n++)
         {
-            x = aktiviereVektor(weights[n].vektorMul(x), n);
+            x = activivateVector(weights[n].vektorMul(x), n);
         }
         
         return x;
@@ -82,7 +82,7 @@ public class Perceptron implements java.io.Serializable
         
         for(int n = 0; n < weights.length; n++)
         {
-            akt[n + 1] = aktiviereVektor(weights[n].vektorMul(akt[n]), n);      //Davor x anstatt akt[n]
+            akt[n + 1] = activivateVector(weights[n].vektorMul(akt[n]), n);      //Davor x anstatt akt[n]
         }
         
         return akt;
@@ -210,7 +210,7 @@ public class Perceptron implements java.io.Serializable
         
         for(int n = 0; n < delta.length; n++)
         {
-            delta[n] = (akt[akt.length - 1][n] - aus[n]) * (aktivierungsDeriv(akt[akt.length -1][n]));
+            delta[n] = (akt[akt.length - 1][n] - aus[n]) * (activationDerivative(akt[akt.length -1][n]));
         }
         
         

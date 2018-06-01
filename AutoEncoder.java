@@ -44,7 +44,7 @@ public class AutoEncoder extends Perceptron
         
         for(int n = 0; n < getWeights().length; n++)
         {
-            akt[n + 1] = aktiviereVektor(getWeights()[n+halfLayerCount-1].vektorMul(akt[n]), n+halfLayerCount-1);      //Davor x anstatt akt[n]
+            akt[n + 1] = activivateVector(getWeights()[n+halfLayerCount-1].vektorMul(akt[n]), n+halfLayerCount-1);      //Davor x anstatt akt[n]
         }
         
         return akt[halfLayerCount-1];
