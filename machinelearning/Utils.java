@@ -1,6 +1,5 @@
 package machinelearning;
 
-import machinelearning.OneDoubleArgOperator;
 
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
@@ -21,12 +20,12 @@ public class Utils
         
         for(int n = 0; n < a.length; n++)
         {
-            result[n] = a[n];
+            result[n] = a[n];                       //TODO: Remove manual copy
         }
         
         for(int n = 0; n < b.length; n++)
         {
-            result[n+a.length] = b[n];
+            result[n+a.length] = b[n];              //TODO: Remove manual copy
         }
         
         return result;

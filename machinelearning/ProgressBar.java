@@ -1,7 +1,5 @@
 package machinelearning;
 
-import java.lang.Math;
-
 public class ProgressBar
 {
     private int maxPrintCount;

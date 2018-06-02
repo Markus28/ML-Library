@@ -8,8 +8,8 @@ import java.util.Random;
 public class Matrix implements java.io.Serializable
 {
     private double[][] matrix;
-    int rows;
-    int columns;
+    private int rows;
+    private int columns;
 
 
     public Matrix(double[][] matrix) throws Exception
