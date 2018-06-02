@@ -1,25 +1,19 @@
-/**
- * Beschreiben Sie hier die Klasse BinaryClassifier.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
 public class BinaryMLP extends Perceptron implements BinaryClassifier
 {
     private double cutoff;
     
-    public BinaryMLP(int[] layers, double cutoff) throws Exception
+    public BinaryMLP(int[] layers, double cutoff) throws IllegalArgumentException
     {
         super(layers);
         
         if(cutoff > 1 || cutoff < 0)
         {
-            throw new Exception("Cutof...");
+            throw new IllegalArgumentException("Cutoff must be between 0 and 1");
         }
         
         if(layers[layers.length-1] != 1)
         {
-            throw new Exception("Last layer must only contain 1 neuron...");
+            throw new IllegalArgumentException("Last layer must only contain 1 neuron...");
         }
         
         this.cutoff = cutoff;
@@ -45,21 +39,19 @@ public class BinaryMLP extends Perceptron implements BinaryClassifier
     {
         return heaviside(super.predictProbability(x)[0]);
     }
-    
-    public void setThreshold(double x) throws Exception
+
+    public double getTrueProbability(double[] x) throws Exception {
+        return super.predictProbability(x)[0];
+    }
+
+    public void setCutoff(double x) throws Exception
     {
         if(x < 0 || x > 1)
         {
-            throw new Exception("Cutoff out of bounds 0 and 1...");
+            throw new IllegalArgumentException("Last layer must only contain 1 neuron...");
         }
         
         cutoff = x;
-    }
-    
-    public double[] getThresholdBounds()
-    {
-        double[] bounds = {0.0,1.0};
-        return bounds;
     }
 
 

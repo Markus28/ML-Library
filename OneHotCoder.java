@@ -1,7 +1,4 @@
-import java.util.List;
-import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -14,13 +11,12 @@ import java.util.HashSet;
 public class OneHotCoder<T> implements java.io.Serializable
 {
     public ArrayList<T> classes = new ArrayList();
-    public HashMap<T, int[]> hm = new HashMap();;
+    public HashMap<T, int[]> hm = new HashMap();
     public int size;
     
     public OneHotCoder(ArrayList<T> classes)
     {
-        HashSet<T> hs = new HashSet<>();
-        hs.addAll(classes);
+        HashSet<T> hs = new HashSet<>(classes);
         this.classes.addAll(hs);
         size = this.classes.size();
         

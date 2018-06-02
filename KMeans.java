@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -56,9 +57,9 @@ public class KMeans
             dim = x[0].length;
         }
         
-        while(! Arrays.equals(oldCentroids, centroids))
+        while(! Arrays.deepEquals(oldCentroids, centroids))
         {
-            oldCentroids = centroids;
+            oldCentroids = centroids.clone();
             predicted = predictBatch(x);
             centroidCount = new int[k];
             
@@ -85,12 +86,9 @@ public class KMeans
     
     public int predict(double[] x) throws Exception
     {
-        //System.out.print(Arrays.toString(x));
         double minDistance = Utils.distance(centroids[0], x);
-        //System.out.println(Arrays.toString(x));
         int minIndex = 0;
-        
-        //System.out.println(Arrays.toString(x));
+
         
         for(int n = 1; n < k; n++)
         {
@@ -110,10 +108,13 @@ public class KMeans
         
         for(int n = 0; n < x.length; n++)
         {
-            //System.out.println(n + ": "+ Arrays.deepToString(x) + ", "+Arrays.toString(x[n]) );
             result[n] = predict(x[n]);
         }
         
         return result;
+    }
+
+    public double[][] getCentroids() {
+        return centroids;
     }
 }

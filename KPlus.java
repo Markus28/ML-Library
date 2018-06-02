@@ -37,7 +37,7 @@ public class KPlus extends KMeans
                p[m] = Math.pow(Utils.distance(c[minIndex],x[m]), 2);
            }
            
-           c[n] = x[Utils.indexRandom(p)]; 
+           c[n] = x[Utils.indexRandom(p)];              //TODO throws java.lang.IllegalArgumentException: bound must be greater than origin
         }
         
         return c;

@@ -20,7 +20,7 @@ public class AutoEncoder extends Perceptron
             }
             
             else{
-                layers[n] = halfLayers[2*halfLayers.length - n - 1];
+                layers[n] = halfLayers[2*halfLayers.length - n - 2];
             }
         }
         
@@ -29,7 +29,7 @@ public class AutoEncoder extends Perceptron
 
     public void train(double[][] x) throws Exception
     {
-        super.train(x, x);                 //This is correct, in an AutoEncoder the output should be equal to the input
+        train(x, x);                 //This is correct, in an AutoEncoder the output should be equal to the input
     }
     
     public double[] encode(double[] x) throws Exception
@@ -42,9 +42,9 @@ public class AutoEncoder extends Perceptron
         double[][] akt = new double[halfLayerCount][];
         akt[0] = x;
         
-        for(int n = 0; n < getWeights().length; n++)
+        for(int n = 0; n < akt.length-1; n++)
         {
-            akt[n + 1] = activivateVector(getWeights()[n+halfLayerCount-1].vektorMul(akt[n]), n+halfLayerCount-1);      //Davor x anstatt akt[n]
+            akt[n + 1] = activateVector(getWeights()[n+halfLayerCount-1].vectorMul(akt[n]), n+halfLayerCount-1);      //Davor x anstatt akt[n]
         }
         
         return akt[halfLayerCount-1];

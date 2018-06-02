@@ -10,8 +10,6 @@ public class Perceptron implements java.io.Serializable
 {
     private Matrix[] weights;
     private double[][] bias;
-    private double min = -1;
-    private double max = 1;
     private int epochs;
     private int batchSize;
     private double eta;
@@ -25,7 +23,7 @@ public class Perceptron implements java.io.Serializable
         
         for(int n = 0; n < layers.length - 1; n++)
         {
-            weights[n] = Matrix.zufallGauss(layers[n+1], layers[n], 0, 1);
+            weights[n] = Matrix.randomGaussian(layers[n+1], layers[n], 0, 1);
             bias[n] = new double[layers[n+1]];
             
             for(int k = 0; k< layers[n+1]; k++)
@@ -47,7 +45,7 @@ public class Perceptron implements java.io.Serializable
     }
     
     //n ist schicht, aus der die Aktivierungen kommen -> Bei 0 wird die hidden layer nach input aktiviert
-    double[] activivateVector(double[] gewichtSummen, int schicht) throws Exception
+    double[] activateVector(double[] gewichtSummen, int schicht) throws Exception
     {
         if(gewichtSummen.length != bias[schicht].length)
         {
@@ -69,7 +67,7 @@ public class Perceptron implements java.io.Serializable
     {
         for(int n = 0; n < weights.length; n++)
         {
-            x = activivateVector(weights[n].vektorMul(x), n);
+            x = activateVector(weights[n].vectorMul(x), n);
         }
         
         return x;
@@ -82,7 +80,7 @@ public class Perceptron implements java.io.Serializable
         
         for(int n = 0; n < weights.length; n++)
         {
-            akt[n + 1] = activivateVector(weights[n].vektorMul(akt[n]), n);      //Davor x anstatt akt[n]
+            akt[n + 1] = activateVector(weights[n].vectorMul(akt[n]), n);      //Davor x anstatt akt[n]
         }
         
         return akt;
@@ -107,7 +105,7 @@ public class Perceptron implements java.io.Serializable
         double[][] batchEin;
         double[][] batchAus;
         
-        List<Integer> indexArray = new ArrayList();
+        List<Integer> indexArray = new ArrayList<>();
         
         int ticks = epochs * ((int) Math.ceil(((double)x.length)/batchSize));
             
@@ -185,7 +183,7 @@ public class Perceptron implements java.io.Serializable
         
         for(int n = 0; n < weights.length; n++)
         {
-            weights[n].matrixSubInPlace(nablaGewichte[n].skalarMul(eta/batchEin.length));
+            weights[n].matrixSubInPlace(nablaGewichte[n].scalarMul(eta/batchEin.length));
             for(int k = 0; k < bias[n].length; k++)
             {
                 bias[n][k] -= nablaBias[n][k]*eta/batchEin.length;
@@ -216,11 +214,11 @@ public class Perceptron implements java.io.Serializable
         
         nablaBias[bias.length - 1] = delta;
         nablaGewichte[weights.length - 1] = Matrix.matMul(Matrix.arrayToColumn(delta), Matrix.arrayToRow(akt[akt.length - 2]));
-        
+
         for(int l = 2; l < weights.length + 1; l++)
         {
             double[] sp = Utils.applyToArr(akt[weights.length - l +1], lambdaActivator);
-            delta = weights[weights.length - l + 1].transpose().vektorMul(delta);
+            delta = weights[weights.length - l + 1].transpose().vectorMul(delta);
             
             for(int i = 0; i < sp.length; i++)
             {

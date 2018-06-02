@@ -2,22 +2,14 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
 import java.util.Random;
 
-/**
- * Matrix
- * 
- * @Markus K 
- * @1.0
- */
+
 public class Matrix implements java.io.Serializable
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     private double[][] matrix;
     int rows;
     int columns;
 
-    /**
-     * Konstruktor für Objekte der Klasse Matrix
-     */
+
     public Matrix(double[][] matrix) throws Exception
     {
         rows = matrix.length;
@@ -45,7 +37,7 @@ public class Matrix implements java.io.Serializable
         
         for(int index = 0; index < m; index++)
         {
-            returnMatrix.setzeWert(index, index, 1);
+            returnMatrix.setValue(index, index, 1);
         }
         
         return returnMatrix;
@@ -63,7 +55,7 @@ public class Matrix implements java.io.Serializable
         return Matrix.arrayToRow(arr).transpose();
     }
     
-    public static Matrix zufall(int m, int n, double min, double max)
+    public static Matrix random(int m, int n, double min, double max)
     {
         Matrix returnMatrix = new Matrix(m, n);
         
@@ -71,14 +63,14 @@ public class Matrix implements java.io.Serializable
         {
             for(int i = 0; i < n; i++)
             {
-                returnMatrix.setzeWert(k, i, ThreadLocalRandom.current().nextInt((int)(min*10000.0), (int)(max*10000.0 + 1.0))/10000.0);
+                returnMatrix.setValue(k, i, ThreadLocalRandom.current().nextInt((int)(min*10000.0), (int)(max*10000.0 + 1.0))/10000.0);
             }
         }
         
         return returnMatrix;
     }
     
-    public static Matrix zufallGauss(int m, int n, double mean, double var)
+    public static Matrix randomGaussian(int m, int n, double mean, double var)
     {
         Matrix returnMatrix = new Matrix(m, n);
         Random r = new Random();
@@ -87,28 +79,23 @@ public class Matrix implements java.io.Serializable
         {
             for(int i = 0; i < n; i++)
             {
-                returnMatrix.setzeWert(k, i, r.nextGaussian()*var + mean);
+                returnMatrix.setValue(k, i, r.nextGaussian()*var + mean);
             }
         }
         
         return returnMatrix;
     }
     
-    public double wert(int m, int n)
+    public double getValue(int m, int n)
     {
         return matrix[m][n];
     }
     
-    public void setzeWert(int m, int n, double value)
+    public void setValue(int m, int n, double value)
     {
         matrix[m][n] = value;
     }
-    
-    public double eintrag(int m, int n)
-    {
-        return matrix[m][n];
-    }
-    
+
     public Matrix transpose()
     {
         Matrix returnMatrix = new Matrix(columns, rows);
@@ -117,7 +104,7 @@ public class Matrix implements java.io.Serializable
         {
             for(int i = 0; i < columns; i++)
             {
-                returnMatrix.setzeWert(i, k, matrix[k][i]);
+                returnMatrix.setValue(i, k, matrix[k][i]);
             }
         }
         
@@ -127,91 +114,94 @@ public class Matrix implements java.io.Serializable
     public static Matrix matMul(Matrix a, Matrix b) throws Exception
     {
         Matrix result = new Matrix(a.getDimensions()[0], b.getDimensions()[1]);
-        double[] vektor = new double[b.getDimensions()[0]];
+        double[] vector = new double[b.getDimensions()[0]];
         for(int n = 0; n < b.getDimensions()[1]; n++)
         {
             for(int k = 0; k < b.getDimensions()[0]; k++)
             {
-                vektor[k] = b.wert(k, n);
+                vector[k] = b.getValue(k, n);
             }
             
-            double[] resultVektor = a.vektorMul(vektor);
+            double[] resultVector = a.vectorMul(vector);
             
-            for(int i = 0; i < resultVektor.length; i++)
+            for(int i = 0; i < resultVector.length; i++)
             {
-                result.setzeWert(i, n, resultVektor[i]);
+                result.setValue(i, n, resultVector[i]);
             }
         }
         
         return result;
     }
     
-    public double[] vektorMul(double[] x) throws Exception
+    public double[] vectorMul(double[] x) throws Exception
     {
         if(x.length != matrix[0].length)
         {
             throw new Exception("Dimensionen inkonsistent...");
         }
         
-        double[] returnVektor = new double[matrix.length];
+        double[] returnVector = new double[matrix.length];
         
         for(int n = 0; n < x.length; n++)
         {
             for(int k = 0; k < matrix.length; k++)
             {
-                returnVektor[k] += x[n]*matrix[k][n];
+                returnVector[k] += x[n]*matrix[k][n];
             }
         }
         
-        return returnVektor;
+        return returnVector;
     }
     
-    public void matrixAddInPlace(Matrix x) throws Exception
+    public void matrixAddInPlace(Matrix x) throws InconsistentDimensionsException
     {
         if(x.getDimensions()[0] != rows || x.getDimensions()[1] != columns)
         {
-            throw new Exception("Dimensionen inkonsistent...");
+            throw new InconsistentDimensionsException("Matrices must have same dimensions...");
         }
         
         for(int n = 0; n < rows; n++)
         {
             for(int k = 0; k< columns; k++)
             {
-                setzeWert(n, k, this.wert(n, k) + x.wert(n, k));
+                setValue(n, k, this.getValue(n, k) + x.getValue(n, k));
             }
         }
     }
     
     public void matrixSubInPlace(Matrix x) throws Exception
     {
-        x.skalarMulInPlace(-1);
+        x.scalarMulInPlace(-1);
         matrixAddInPlace(x);
-        x.skalarMulInPlace(-1);
+        x.scalarMulInPlace(-1);
     }
     
-    public void skalarMulInPlace(double x)
+    public void scalarMulInPlace(double x)
     {
         for(int n = 0; n < rows; n++)
         {
             for(int k = 0; k< columns; k++)
             {
-                setzeWert(n, k, this.wert(n, k)*x);
+                setValue(n, k, this.getValue(n, k)*x);
             }
         }
     }
     
-    public Matrix skalarMul(double x) throws Exception
+    public Matrix scalarMul(double x) throws Exception
     {
-        Matrix returnMatrix = new Matrix(matrix);
-        returnMatrix.skalarMulInPlace(x);
+        Matrix returnMatrix = new Matrix(rows, columns);
+        for(int n = 0; n < rows; n++)
+        {
+            for(int k = 0; k < columns; k++)
+            {
+                returnMatrix.setValue(n, k, getValue(n, k));
+            }
+        }
+
+        returnMatrix.scalarMulInPlace(x);
         return returnMatrix;
     }
-    
-    public void skalarDivInPlace(double x)
-    {
-        skalarMulInPlace(1.0/x);
-    }
-    
+
     
     public int[] getDimensions()
     {

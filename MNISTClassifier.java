@@ -11,7 +11,7 @@ public class MNISTClassifier
 {
     private static MultiClassMLP<Integer> model;
     
-    public static void main(String[] args) throws Exception, IOException
+    public static void main(String[] args) throws Exception
     {
         int[] shape = {28*28, 30, 10};
         if(shape[0] != 28*28 || shape[shape.length - 1] != 10)
@@ -50,7 +50,7 @@ public class MNISTClassifier
         thread.join();
 
         System.out.println("Training:\n");
-        model.setParameters(15,90,0.03);
+        model.setParameters(5,90,0.2);
         model.train(x, y);
         
         f = new MNISTFile("out/Data/test.csv");
