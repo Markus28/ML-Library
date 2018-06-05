@@ -1,7 +1,6 @@
 package machinelearning;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MNISTClustering {
 
@@ -18,31 +17,19 @@ public class MNISTClustering {
             x[n] = ((MNISTDataRow)fields.get(n)).getFeatures();
         }
 
-        int[] halfLayer = {28*28, 25, 5};
-        AutoEncoder encoder = new AutoEncoder(halfLayer);
-
-        encoder.setParameters(3, 50, 0.1);
-        encoder.train(x, x);
-
         KMeans clusterer = new KMeans(10);
-        double[][] clusterData = new double[x.length][];
 
-        for(int n = 0; n < x.length; n++)
-        {
-            clusterData[n] = encoder.encode(x[n]);
-        }
-
-
-        clusterer.train(clusterData);
+        clusterer.train(x);
 
         MNISTImage img;
-        //double[][] centroids = clusterer.getCentroids();
+        double[][] centroids = clusterer.getCentroids();
+        int n = 0;
 
-        for(int n = 0; n < 10; n++)
+        for(double[] centroid: centroids)
         {
-            System.out.println(Arrays.toString(encoder.encode(x[n])));
-            img = new MNISTImage(encoder.decode(encoder.encode(x[n])));
+            img = new MNISTImage(centroid);
             img.writeImage("out/Data/"+n+".png");
+            n++;
         }
     }
 }
