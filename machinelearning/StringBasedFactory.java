@@ -1,5 +1,5 @@
 package machinelearning;
 
-public interface StringBasedFactory<T> {
-    T get(String name);
+public abstract class StringBasedFactory<T> {
+    abstract T get(String name);
 }

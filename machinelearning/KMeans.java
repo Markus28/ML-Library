@@ -1,6 +1,5 @@
 package machinelearning;
 
-import java.lang.reflect.Array;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
 import java.util.ArrayList;

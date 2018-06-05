@@ -1,6 +1,6 @@
 package machinelearning;
 
-public class BinaryClassifierFactory implements StringBasedFactory<BinaryClassifier> {
+public class BinaryClassifierFactory extends StringBasedFactory<BinaryClassifier> {
 
     public BinaryClassifier get(String name)
     {
