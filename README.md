@@ -1,2 +1,3 @@
 # ML-Library
-For educational use only due to poor performance.
+Implementation of multilayer perceptron. 
+Capable of ~85% accuracy on MNIST digit dataset.
